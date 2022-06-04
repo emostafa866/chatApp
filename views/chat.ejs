@@ -1,0 +1,55 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+        <div class="container">
+            <div class="row">
+
+                <input id="chatId" type="hidden" value="<%=chatId%>">
+                <div class="col col-12 col-md-3">
+                    <img height="200px" width="200px" src="/<%=friendData.image%>"> <br>
+                    <h5></h5>
+                    <a href="/profile/<%=friendData.id%>">
+                        <%=friendData.username%>
+                    </a>
+                </div>
+                <div class="col col-12 col-md-9">
+                    <div id="messageContainer"
+                        style="height:400px;width:300px;border:1px solid rgb(56, 95, 119); padding: 5px;margin: bottom 2px; font:16px/26px Georgia, Garamond, Serif;overflow:auto; background-color: rgb(184, 195, 195);">
+                        <%for (let msg of messages) { %>
+                            <% if (msg.sender===isUser) { %>
+                                <span style="background-color: rgb(150, 182, 182); margin: 1%;padding: 1%;">
+                                    Me: <%= msg.content%>
+                                </span>
+                                <br>
+                                <%} else { %>
+                                    <span style="margin-left:10%;background-color: rgb(220, 200, 174); padding:1%;">
+                                        <%= msg.content%>
+                                    </span>
+                                    <br>
+                                    <% }%>
+                                        <% } %>
+
+                    </div>
+                    <div class="messages-form">
+                        <textarea id="message" style="width: 300px;"></textarea>
+                        <button id="sendBtn" class="btn btn-secondary">Send</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <%- include('parts/scripts')%>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/js/sockets/init.js"></script>
+            <script src="/js/sockets/chat.js"></script>
+
+            </body>
+
+            </html>

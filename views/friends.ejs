@@ -1,0 +1,41 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+        <div class="container">
+            <% if (friends.length===0){ %>
+                <p class="alert alert-danger">
+                    you have no Friends
+                </p>
+                <%} else { %>
+
+                    <div id="Friends" class="row">
+                        <% for (let friend of friends) { %>
+                            <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+                                <div class=" card" style="width:15rem;">
+                                    <img class="card-img-top" src="/<%=friend.image%>">
+                                    <div class="card-body">
+                                        <h3 class="card-title">
+                                            <a href="/profile/<%=friend.id%>">
+                                                <%=friend.name%>
+                                            </a>
+                                        </h3>
+                                        <a type="button" class="btn btn-secondary" href="/chat/<%=friend.chatId%>"> Chat
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <% } %>
+        </div>
+
+
+        <%- include('parts/scripts')%>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/js/sockets/init.js"></script>
+
+            </body>
+
+            </html>

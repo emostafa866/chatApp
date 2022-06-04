@@ -1,0 +1,48 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+        <div class="container text-center" style="padding: 10px;">
+            <h3>Create Account</h3>
+            <form action="/signup" method="post">
+                <input type="text" class="form-control" name="username" placeholder="Username">
+                <% let Namerror=signuperror.find(err=>err.param==='username') %>
+                    <% if(Namerror) { %>
+                        <p class="alert alert-danger">
+                            <%=Namerror.msg%>
+                        </p>
+                        <% } %>
+                            <input type="email" class="form-control" name="email" placeholder="E-mail">
+                            <% let Emailerror=signuperror.find(err=>err.param==='email') %>
+                                <% if(Emailerror) { %>
+                                    <p class="alert alert-danger">
+                                        <%=Emailerror.msg%>
+                                    </p>
+                                    <% } %>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="password">
+                                        <% let PassError=signuperror.find(err=>err.param==='password') %>
+                                            <% if(PassError) { %>
+                                                <p class="alert alert-danger">
+                                                    <%=PassError.msg%>
+                                                </p>
+                                                <% } %>
+                                                    <input type="password" class="form-control" name="confirmpassword"
+                                                        placeholder="ConfrmPassword">
+                                                    <% let CpassError=signuperror.find(err=>
+                                                        err.param==='confirmpassword') %>
+                                                        <% if(CpassError) { %>
+                                                            <p class="alert alert-danger">
+                                                                <%=CpassError.msg%>
+                                                            </p>
+                                                            <% } %>
+                                                                <input type="submit" value="Create Account"
+                                                                    class="btn btn-primary">
+            </form>
+            <div>
+                Already have account? <a href="/login">Login</a>
+            </div>
+        </div>
+
+        <%- include('parts/scripts')%>
+            </body>
+
+            </html>

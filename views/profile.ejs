@@ -1,0 +1,63 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+        <div class="container">
+            <div class="row">
+                <div class=" col col-12 col-md-4">
+                    <img height="200px" width="200px" src="/<%= userImage%> ">
+                </div>
+                <% if (isOwner) { %>
+                    <form method="post" action="/profile/changePhoto" enctype="multipart/form-data">
+                        <div class="custom-file" style="margin-top: 1%;">
+                            <input type="submit" class="btn btn-primary" value="change photo">
+                            <input type="file" class=" custom-file-input" name="image">
+
+                        </div>
+                    </form>
+                    <% } %>
+                        <div class=" col col-12 col-md-4">
+                            <h3>
+                                <%= username%>
+                            </h3>
+
+                            <% if (!isOwner) { %>
+                                <form method="post" id="friend-form">
+                                    <input id="myID" type="hidden" name="myID" value="<%=myID%>">
+                                    <input id="myName" type="hidden" name="myName" value="<%=myName%>">
+                                    <input id="myImage" type="hidden" name="myImage" value="<%=myImage%>">
+                                    <input id="friendID" type="hidden" name="friendID" value="<%=friendID%>">
+                                    <input id="friendName" type="hidden" name="friendName" value="<%=username%>">
+                                    <input id="friendImage" type="hidden" name="friendImage" value="<%=userImage%>">
+
+
+
+                                    <% if (isFriends) { %>
+                                        <input class="btn btn-danger" type="submit" value="Delete Friend"
+                                            formaction="/friend/delete">
+                                        <% } else if (isFriendRequest) { %>
+                                            <input id="cancelBtn" class="btn btn-danger" type="submit"
+                                                value="Cancel Request" formaction="/friend/cancel">
+                                            <% } else if (isFriendReceived) { %>
+                                                <input class="btn btn-danger" type="submit" value="Confirm"
+                                                    formaction="/friend/confirm">
+                                                <% } else { %>
+                                                    <input id="addBtn" type="submit" class="btn btn btn-primary"
+                                                        value="Add Friend">
+                                                    <% } %>
+                                </form>
+                                <% } %>
+                        </div>
+            </div>
+        </div>
+
+        <%- include('parts/scripts')%>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/js/sockets/init.js"></script>
+
+            <% if (!isOwner && !isFriends) { %>
+
+                <script src="/js/sockets/friend.js"></script>
+                <% } %>
+                    </body>
+
+                    </html>
