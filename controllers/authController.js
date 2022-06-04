@@ -18,12 +18,12 @@ exports.getSignup = (req, res, next) => {
         pageName: "Sign Up",
         signuperror: req.flash('signuperrors')
     })
-    console.log(signuperror)
+
 }
 
 exports.postSignup = (req, res, next) => {
 
-    if (validationResult(req).errors.length === 0) {
+    if (validationResult(req).isEmpty()) {
         authModel.createAccount(req.body.email, req.body.username, req.body.password
         ).then(() => {
             res.redirect('/')
@@ -32,7 +32,7 @@ exports.postSignup = (req, res, next) => {
             res.redirect('/signup')
         })
     } else {
-        req.flash('signuperrors', validationResult(req).errors)
+        req.flash('signuperrors', validationResult(req).array())
         res.redirect('/signup')
 
     }
