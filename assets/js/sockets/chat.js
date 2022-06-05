@@ -31,4 +31,4 @@ socket.on('messageContent', (content, sender) => {
 
 })
 
-messagespan.style.backgroundColor = 'green'
+

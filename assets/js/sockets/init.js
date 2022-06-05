@@ -12,7 +12,7 @@ socket.on('connect', () => {
     socket.emit('isOnline', id)
 })
 
-socket.on('onlineFriends', friends => {
+/*socket.on('onlineFriends', friends => {
     // console.log(friends)
 
     let div = document.getElementById('onlineFriends')
@@ -46,7 +46,7 @@ socket.on('onlineFriends', friends => {
         div.innerHTML = html
 
     }
-})
+})*/
 
 
 
