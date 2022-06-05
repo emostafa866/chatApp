@@ -2,7 +2,7 @@
 socket.emit('isOnline', id)
 
 socket.on('onlineFriends', friends => {
-    // console.log(friends)
+
     let div = document.getElementById('onlineFriends')
 
     if (friends.length === 0) {

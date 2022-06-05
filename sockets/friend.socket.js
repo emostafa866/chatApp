@@ -18,7 +18,7 @@ module.exports = (io) => {
         socket.on('isOnline', id => {
             getFriends(id).then((friends) => {
                 let onlineFriends = friends.filter(friend => io.onlineUsers[friend.id])
-                //console.log(onlineFriends)
+                console.log(onlineFriends)
                 socket.emit('onlineFriends', onlineFriends)
             }).catch((err) => {
                 console.log(err);
